@@ -1,0 +1,152 @@
+/* css/style.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* === NOUVEAU THÈME === */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fdf3e5; /* Couleur de base du nouveau thème */
+}
+
+.level-btn.locked { cursor: not-allowed; opacity: 0.6; }
+.question-option.correct { background-color: #4ade80 !important; color: white !important; border-color: #22c55e !important; }
+.question-option.incorrect { background-color: #f87171 !important; color: white !important; border-color: #ef4444 !important; }
+.progress-ring__circle { transition: stroke-dashoffset 0.5s ease; transform: rotate(-90deg); transform-origin: 50% 50%; }
+.fade-in { animation: fadeIn 0.4s ease-in-out; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.dragonfly-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Styles de prose (texte) adaptés pour une lisibilité optimale */
+.prose h1, .prose h2, .prose h3, .prose h4 { 
+    color: #44403c; /* stone-700 */
+    margin-bottom: 0.5em; 
+    font-weight: 600;
+}
+.prose p { margin-bottom: 1em; line-height: 1.7; color: #57534e; /* stone-600 */ }
+.prose ul, .prose ol { list-style-position: inside; margin-left: 1.5em; margin-bottom: 1em; }
+.prose li { margin-bottom: 0.5em; padding-left: 0.5rem; }
+.prose strong { color: #292524; /* stone-800 */ font-weight: 600; }
+.prose code { background-color: #f5f5f4; /* stone-100 */ padding: 0.2em 0.4em; border-radius: 3px; font-size: 0.9em; color: #9a3412; /* orange-800 */ }
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(180, 83, 9, 0.15); /* Bordure chaude et subtile */
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #9a3412 0%, #9a3412 100%); /* Dégradé orange chaud */
+    color: white;
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(194, 65, 12, 0.25);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #9a3412 0%, #9a3412 100%); /* Dégradé orange chaud */
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #3B82F6 0%, #3B82F6 100%); /* Dégradé pierre/brun */
+    color: white;
+    transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(120, 113, 108, 0.25);
+}
+
+.level-indicator {
+    background: #9a3412; /* orange-800 */
+    color: #fdf3e5; /* Texte couleur crème */
+    box-shadow: 0 4px 6px rgba(154, 52, 18, 0.25);
+}
+
+.nav-card {
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.nav-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dragonfly-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* === AJOUT : Animation de cycle de couleurs === */
+@keyframes color-cycle-animation {
+    0%, 100% { background-color: #8B5CF6; } /* Violet */
+    20%      { background-color: #3B82F6; } /* Bleu */
+    40%      { background-color: #22C55E; } /* Vert */
+    60%      { background-color: #F97316; } /* Orange */
+    80%      { background-color: #EF4444; } /* Rouge */
+}
+
+.animated-color-icon {
+    animation: color-cycle-animation 3s ease-in-out infinite;
+}
+
+.signature-bar {
+    height: 4px;
+    width: 100%;
+    max-width: 250px;
+    margin: 0rem auto; /* Espacement vertical et centrage horizontal */
+    border-radius: 2px;
+    background: linear-gradient(to right, 
+        #8B5CF6 0%, #8B5CF6 20%,    /* Violet */
+        #3B82F6 20%, #3B82F6 40%,   /* Bleu */
+        #22C55E 40%, #22C55E 60%,   /* Vert */
+        #F97316 60%, #F97316 80%,   /* Orange */
+        #EF4444 80%, #EF4444 100%   /* Rouge */
+    );
+}
+
+.btn-tertiary {
+    background: linear-gradient(135deg, #22C55E 0%, #22C55E 100%); /* Dégradé violet */
+    color: white;
+    transition: all 0.3s ease;
+}
+.btn-tertiary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.25);
+}
+
+.btn-quaternary {
+    background: linear-gradient(135deg, #F97316 0%, #F97316 100%); /* Dégradé turquoise */
+    color: white;
+    transition: all 0.3s ease;
+}
+.btn-quaternary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(13, 148, 136, 0.25);
+}
+
+.btn-quinary {
+    background: linear-gradient(135deg, #EF4444 0%, #EF4444 100%); /* Dégradé rose */
+    color: white;
+    transition: all 0.3s ease;
+}
+.btn-quinary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(219, 39, 119, 0.25);
+}
