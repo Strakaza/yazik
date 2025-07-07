@@ -196,7 +196,7 @@ async function showLevelContent(levelId) {
 async function getLessonDetail(topic, levelId) { 
     const lessonContainer = document.getElementById('ai-lesson-detail'); 
     lessonContainer.innerHTML = `<div class="text-center py-8 border-t mt-6"><i class="fas fa-spinner fa-spin text-2xl text-orange-600"></i><p class="text-stone-500 mt-2">L'IA rédige la leçon sur "${topic}"...</p></div>`; 
-    const detailPrompt = `Tu es un excellent professeur de russe. Explique le sujet suivant pour un élève du niveau ${levelId} : "${topic}". Structure ta réponse avec une intro, des règles, au moins 3 exemples clairs (russe, [prononciation], français), et une liste de vocabulaire clé. Utilise le formatage Markdown.`; 
+    const detailPrompt = `En tant que professeur de russe pour le niveau ${levelId}, explique le sujet "${topic}". Ta réponse doit être en Markdown et inclure : une explication claire, 2 exemples (russe et français), et un petit vocabulaire. Sois concis.`;
     const lessonContent = await callGeminiAPI(detailPrompt); 
     lessonContainer.innerHTML = `<div class="border-t border-stone-200 mt-6 pt-6 prose max-w-none"><h4 class="text-2xl font-bold text-stone-800 mb-4">${topic}</h4>${marked.parse(lessonContent)}</div>`; 
 }
