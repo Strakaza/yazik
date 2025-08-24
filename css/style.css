@@ -2,8 +2,11 @@
 
 /* === NOUVEAU THÈME === */
 body {
-    font-family: 'Times New Roman', Times, serif;
     background-color: #fdf3e5; /* Couleur de base du nouveau thème */
+}
+
+* {
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .level-btn.locked { cursor: not-allowed; opacity: 0.6; }
