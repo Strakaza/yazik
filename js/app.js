@@ -143,6 +143,27 @@ function renderNavigation() {
         } 
         elements.navigationMenu.appendChild(levelElement); 
     }); 
+     const separator = document.createElement('hr');
+    separator.className = 'my-3 border-stone-200'; 
+    elements.navigationMenu.appendChild(separator);
+
+    const vocabQuizLink = document.createElement('a');
+
+    vocabQuizLink.href = "voc.html"; 
+
+    vocabQuizLink.className = 'w-full text-left px-4 py-3 rounded-lg transition-all duration-300 flex items-center shadow-sm border hover:bg-orange-50 hover:border-orange-200 text-stone-800 border-stone-200';
+
+    vocabQuizLink.innerHTML = `
+        <div class="flex items-center justify-center w-10 h-10 rounded-full mr-4 text-sm font-bold bg-blue-500 text-white">
+            <i class="fas fa-spell-check"></i>
+        </div>
+        <div class="flex-grow">
+            <div class="font-semibold">Test de Vocabulaire</div>
+            <div class="text-sm text-stone-500">Entraînement infini</div>
+        </div>
+    `;
+
+    elements.navigationMenu.appendChild(vocabQuizLink);
 }
 
 async function showLevelContent(levelId) {
