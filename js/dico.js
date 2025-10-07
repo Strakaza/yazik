@@ -1,8 +1,5 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- DICTIONNAIRE ---
-    // Vous pouvez modifier ou ajouter des mots ici
     const vocabulary = [
         { russian: 'Здравствуйте', translation: ['bonjour'] },
         { russian: 'Спасибо', translation: ['merci'] },
@@ -21,8 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { russian: 'Говорить', translation: ['parler'] },
     ];
 
-    // --- RÉCUPÉRATION DES ÉLÉMENTS DU DOM ---
-    const russianWordEl = document.getElementById('russian-word');
+    const questionWordEl = document.getElementById('russian-word'); 
     const answerInputEl = document.getElementById('answer-input');
     const quizFormEl = document.getElementById('quiz-form');
     const feedbackContainerEl = document.getElementById('feedback-container');
@@ -31,26 +27,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreCorrectEl = document.getElementById('score-correct');
     const scoreTotalEl = document.getElementById('score-total');
     
-    // --- VARIABLES D'ÉTAT DU QUIZ ---
     let currentWord = null;
     let score = 0;
     let totalAnswered = 0;
     let isAnswered = false;
+    let currentDirection = 'RU_TO_FR'; 
     
-    // --- FONCTIONS DU QUIZ ---
 
-    /** Affiche un nouveau mot aléatoire et réinitialise l'interface */
     function displayNewWord() {
         isAnswered = false;
+        
         const randomIndex = Math.floor(Math.random() * vocabulary.length);
         currentWord = vocabulary[randomIndex];
 
-        russianWordEl.textContent = currentWord.russian;
+        if (Math.random() < 0.5) {
+            currentDirection = 'RU_TO_FR';
+            questionWordEl.textContent = currentWord.russian;
+            answerInputEl.placeholder = "Entrez la traduction française...";
+        } else {
+            currentDirection = 'FR_TO_RU';
+            // On prend la première traduction française comme question
+            questionWordEl.textContent = currentWord.translation[0]; 
+            answerInputEl.placeholder = "Entrez la traduction russe...";
+        }
+
+        // 3. Réinitialiser l'interface (même logique qu'avant)
         feedbackContainerEl.innerHTML = '';
         answerInputEl.value = '';
-        answerInputEl.className = 'w-full'; // Réinitialise les classes de couleur
+        answerInputEl.className = 'w-full';
         answerInputEl.disabled = false;
-        answerInputEl.focus(); // Met le curseur directement dans le champ
+        answerInputEl.focus();
         
         submitButtonEl.style.display = 'block';
         nextWordButtonEl.style.display = 'none';
@@ -58,26 +64,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /** Vérifie la réponse de l'utilisateur */
     function checkAnswer(event) {
-        event.preventDefault(); // Empêche le rechargement de la page par le formulaire
+        event.preventDefault();
         if (isAnswered) return;
 
         isAnswered = true;
         totalAnswered++;
 
         const userAnswer = answerInputEl.value.trim().toLowerCase();
-        const correctAnswers = currentWord.translation.map(t => t.toLowerCase());
+        
+        let isCorrect = false;
+        let firstCorrectAnswer = '';
 
-        if (correctAnswers.includes(userAnswer)) {
+        if (currentDirection === 'RU_TO_FR') {
+            const correctAnswers = currentWord.translation.map(t => t.toLowerCase());
+            isCorrect = correctAnswers.includes(userAnswer);
+            firstCorrectAnswer = currentWord.translation[0];
+        } else { 
+            const correctAnswer = currentWord.russian.toLowerCase();
+            isCorrect = (userAnswer === correctAnswer);
+            firstCorrectAnswer = currentWord.russian;
+        }
+
+        if (isCorrect) {
             score++;
             answerInputEl.classList.add('input-correct');
             feedbackContainerEl.innerHTML = `<p class="font-bold text-green-600">✅ Correct !</p>`;
         } else {
             answerInputEl.classList.add('input-incorrect');
-            const firstCorrectAnswer = currentWord.translation[0];
             feedbackContainerEl.innerHTML = `<p class="font-bold text-red-600">❌ Incorrect. La bonne réponse était : <strong>${firstCorrectAnswer}</strong></p>`;
         }
         
-        // Mettre à jour le score et l'état des boutons
         scoreCorrectEl.textContent = score;
         scoreTotalEl.textContent = totalAnswered;
         answerInputEl.disabled = true;
@@ -86,11 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
         nextWordButtonEl.style.display = 'block';
     }
 
-    // --- ÉCOUTEURS D'ÉVÉNEMENTS ---
     quizFormEl.addEventListener('submit', checkAnswer);
     nextWordButtonEl.addEventListener('click', displayNewWord);
 
-    // --- DÉMARRAGE INITIAL ---
-    // Affiche le premier mot au chargement de la page
     displayNewWord();
 });
