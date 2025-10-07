@@ -1,6 +1,6 @@
 /* css/style.css */
 
-/* === NOUVEAU THÈME === */
+
 body {
     font-family: 'Times New Roman', Times, serif;
     background-color: #fdf3e5; /* Couleur de base du nouveau thème */
@@ -148,3 +148,26 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(219, 39, 119, 0.25);
 }
+
+ #answer-input {
+            border: 2px solid #d6d3d1; /* stone-300 */
+            transition: all 0.3s ease;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            font-size: 1.125rem;
+            color: #44403c;
+        }
+        #answer-input:focus {
+            outline: none;
+            border-color: #9a3412; /* orange-800 */
+            box-shadow: 0 0 0 3px rgba(154, 52, 18, 0.2);
+        }
+        .input-correct {
+            border-color: #22c55e !important; /* green-500 */
+            background-color: #f0fdf4;
+        }
+        .input-incorrect {
+            border-color: #ef4444 !important; /* red-500 */
+            background-color: #fef2f2;
+        }
