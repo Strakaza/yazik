@@ -292,6 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { russian: 'Летать', translation: ['voler'] },
         { russian: 'Вы', translation: ['vous'] },
         { russian: 'Хотеть', translation: ['vouloir'] },
+        { russian: 'невест', translation: ['mariées'] },
     ];
 
     const questionWordEl = document.getElementById('russian-word'); 
@@ -383,3 +384,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     displayNewWord();
 });
+
